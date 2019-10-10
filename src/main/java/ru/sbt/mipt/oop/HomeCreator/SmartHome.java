@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package main.java.ru.sbt.mipt.oop.HomeCreator;
+
+import main.java.ru.sbt.mipt.oop.HomeFeatures.Room;
 
 import java.util.ArrayList;
 import java.util.Collection;

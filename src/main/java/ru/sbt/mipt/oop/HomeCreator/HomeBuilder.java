@@ -1,7 +1,10 @@
-package ru.sbt.mipt.oop;
+package main.java.ru.sbt.mipt.oop.HomeCreator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import main.java.ru.sbt.mipt.oop.HomeFeatures.Door;
+import main.java.ru.sbt.mipt.oop.HomeFeatures.Light;
+import main.java.ru.sbt.mipt.oop.HomeFeatures.Room;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
