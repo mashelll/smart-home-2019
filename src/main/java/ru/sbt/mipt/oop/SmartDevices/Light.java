@@ -1,6 +1,6 @@
-package main.java.ru.sbt.mipt.oop.HomeFeatures;
+package ru.sbt.mipt.oop.SmartDevices;
 
-public class Light {
+public class Light extends SmartDevice {
     private boolean isOn;
     private final String id;
 

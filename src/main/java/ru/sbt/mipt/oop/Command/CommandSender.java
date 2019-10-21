@@ -1,4 +1,4 @@
-package main.java.ru.sbt.mipt.oop.Command;
+package ru.sbt.mipt.oop.Command;
 
 
 public class CommandSender {

@@ -1,7 +1,7 @@
-package main.java.ru.sbt.mipt.oop.ReadingUtils;
+package ru.sbt.mipt.oop.ReadingUtils;
 
 import com.google.gson.Gson;
-import main.java.ru.sbt.mipt.oop.HomeCreator.SmartHome;
+import ru.sbt.mipt.oop.SmartHome.SmartHome;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,9 +10,14 @@ import java.nio.file.Paths;
 
 public class SmartHomeReaderJSON implements SmartHomeReader {
     @Override
-    public SmartHome read() throws IOException {
+    public SmartHome read() {
         Gson gson = new Gson();
-        String json = new String(Files.readAllBytes(Paths.get("smart-home-1.js")));
+        String json = null;
+        try {
+            json = new String(Files.readAllBytes(Paths.get("smart-home-1.js")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         SmartHome smartHome = gson.fromJson(json, SmartHome.class);
         return smartHome;
     }

@@ -1,9 +1,8 @@
-package main.java.ru.sbt.mipt.oop.ReadingUtils;
+package ru.sbt.mipt.oop.ReadingUtils;
 
-import main.java.ru.sbt.mipt.oop.HomeCreator.SmartHome;
+import ru.sbt.mipt.oop.SmartHome.SmartHome;
 
-import java.io.IOException;
 
 public interface SmartHomeReader {
-    public SmartHome read() throws IOException;
+    public SmartHome read();
 }

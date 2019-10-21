@@ -1,20 +1,19 @@
-package main.java.ru.sbt.mipt.oop.SensorEvent;
-
-import static main.java.ru.sbt.mipt.oop.SensorEvent.SensorEventType.*;
+package ru.sbt.mipt.oop.SensorEvent;
 
 
-public class SensorEventGenerator {
-    public static SensorEvent getNextSensorEvent() {
-        // pretend like we're getting the events from physical world, but here we're going to just generate some random events
-        if (Math.random() < 0.05) return null; // null means end of event stream
-        SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
-        String objectId = "" + ((int) (10 * Math.random()));
-        if (sensorEventType == DOOR_OPEN || sensorEventType == DOOR_CLOSED) {
-            return new SensorEventDoor(sensorEventType, objectId);
+import static java.lang.StrictMath.abs;
+
+public class SensorEventGenerator implements SensorEventGetter{
+    @Override
+    public SensorEvent getNextSensorEvent() {
+        SensorEvent event;
+        String objectId = "" + (((int) (Math.random() * 100)) % 10);
+        int actionType = (((int) (Math.random() * 100)) % 2);
+        if (((int) (Math.random() * 100)) > 50) {
+            event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.values()[actionType], objectId);
+        } else {
+            event = new SensorEvent(SensorEventType.LIGHT_EVENT, LightActionType.values()[actionType], objectId);
         }
-        if (sensorEventType == LIGHT_ON || sensorEventType == LIGHT_OFF) {
-            return new SensorEventLight(sensorEventType, objectId);
-        }
-        return null;
+        return event;
     }
 }
