@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop.SmartDevices;
 
-public class Light extends SmartDevice {
+import ru.sbt.mipt.oop.SmartHome.HomeObject;
+
+public class Light extends SmartDevice implements HomeObject {
     private boolean isOn;
     private final String id;
 

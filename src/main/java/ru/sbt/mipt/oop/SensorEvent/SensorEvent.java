@@ -1,5 +1,8 @@
 package ru.sbt.mipt.oop.SensorEvent;
 
+import ru.sbt.mipt.oop.SensorEvent.Types.ActionType;
+import ru.sbt.mipt.oop.SensorEvent.Types.SensorEventType;
+
 public class SensorEvent {
     private final SensorEventType type;
     private final ActionType actionType;

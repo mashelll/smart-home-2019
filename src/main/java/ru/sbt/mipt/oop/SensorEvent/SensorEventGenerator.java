@@ -1,6 +1,10 @@
 package ru.sbt.mipt.oop.SensorEvent;
 
 
+import ru.sbt.mipt.oop.SensorEvent.Types.DoorActionType;
+import ru.sbt.mipt.oop.SensorEvent.Types.LightActionType;
+import ru.sbt.mipt.oop.SensorEvent.Types.SensorEventType;
+
 import static java.lang.StrictMath.abs;
 
 public class SensorEventGenerator implements SensorEventGetter{
