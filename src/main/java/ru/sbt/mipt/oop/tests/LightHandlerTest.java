@@ -7,6 +7,8 @@ import ru.sbt.mipt.oop.event_handlers.LightHandler;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReader;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReaderJSON;
 import ru.sbt.mipt.oop.sensor_event.SensorEvent;
+import ru.sbt.mipt.oop.sensor_event.SensorEventGenerator;
+import ru.sbt.mipt.oop.sensor_event.SensorEventGetter;
 import ru.sbt.mipt.oop.sensor_event.types.LightActionType;
 import ru.sbt.mipt.oop.sensor_event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart_devices.Light;
@@ -39,11 +41,12 @@ class LightHandlerTest {
 
     @Test
     void testTurnedOffLightTurnsOn() {
-        int randInt = randomGenerator.nextInt(turnedOffLights.size());
+        int randInt = randomGenerator.nextInt(5);
         String lightId = turnedOffLights.get(randInt);
         SensorEvent event = new SensorEvent(SensorEventType.LIGHT_EVENT, LightActionType.ON, lightId);
-
         eventHandler.handleEvent(event);
+        turnedOnLights = getLights(true);
+        turnedOffLights = getLights(false);
         turnedOffLights.remove(lightId);
         turnedOnLights.add(lightId);
 

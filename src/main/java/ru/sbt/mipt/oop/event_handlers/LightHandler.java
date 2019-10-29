@@ -22,7 +22,8 @@ public class LightHandler implements EventHandler {
             return;
         }
 
-        smartHome.execute((Actionable actionable) -> {
+        smartHome.execute(
+                (Actionable actionable) -> {
             if (!(actionable instanceof Light)) return;
             Light light = (Light) actionable;
             if (!(light.getId().equals(event.getObjectId()))) return;

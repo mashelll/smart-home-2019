@@ -39,6 +39,11 @@ class DoorHandlerTest {
 
     @Test
     void testClosedDoorOpens() {
+        try {
+            setUp();
+        } catch(IOException e) {
+            System.out.println("IOException");
+        }
         int randInt = randomGenerator.nextInt(closedDoors.size());
         String doorId = closedDoors.get(randInt);
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.OPEN, doorId);
