@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop.smart_home;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.sbt.mipt.oop.smart_devices.alarm.Alarm;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class SmartHome implements Actionable {
     }
 
     public Alarm getAlarm() {
-        return alarm;
+        return this.alarm;
     }
 
     public void addRoom(Room room) {
