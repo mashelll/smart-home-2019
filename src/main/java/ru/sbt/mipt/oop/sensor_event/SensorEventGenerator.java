@@ -1,23 +1,31 @@
 package ru.sbt.mipt.oop.sensor_event;
 
 
-import ru.sbt.mipt.oop.sensor_event.types.DoorActionType;
-import ru.sbt.mipt.oop.sensor_event.types.LightActionType;
-import ru.sbt.mipt.oop.sensor_event.types.SensorEventType;
+import ru.sbt.mipt.oop.sensor_event.action_types.AlarmActionType;
+import ru.sbt.mipt.oop.sensor_event.action_types.DoorActionType;
+import ru.sbt.mipt.oop.sensor_event.action_types.LightActionType;
+import ru.sbt.mipt.oop.sensor_event.types.AlarmEvent;
+import ru.sbt.mipt.oop.sensor_event.types.DoorEvent;
+import ru.sbt.mipt.oop.sensor_event.types.LightEvent;
 
 import static java.lang.StrictMath.abs;
 
-public class SensorEventGenerator implements SensorEventGetter{
+public class SensorEventGenerator implements SensorEventGetter {
     @Override
     public SensorEvent getNextSensorEvent() {
-        SensorEvent event;
         String objectId = "" + (((int) (Math.random() * 100)) % 10);
-        int actionType = (((int) (Math.random() * 100)) % 2);
-        if (((int) (Math.random() * 100)) > 50) {
-            event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.values()[actionType], objectId);
-        } else {
-            event = new SensorEvent(SensorEventType.LIGHT_EVENT, LightActionType.values()[actionType], objectId);
+        int actionType = (int) (Math.random() * 2);
+
+        switch ((int) (Math.random() * 3)) {
+            case (0):
+                return new DoorEvent(DoorActionType.values()[actionType], objectId);
+            case (1):
+                return new LightEvent(LightActionType.values()[actionType], objectId);
+            case (2):
+                return new AlarmEvent(AlarmActionType.values()[actionType], "0", 12345);
+            default:
+                return null;
         }
-        return event;
+
     }
 }

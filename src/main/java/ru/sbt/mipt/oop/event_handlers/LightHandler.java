@@ -1,8 +1,9 @@
 package ru.sbt.mipt.oop.event_handlers;
 
-import ru.sbt.mipt.oop.sensor_event.types.LightActionType;
+import ru.sbt.mipt.oop.sensor_event.action_types.LightActionType;
 import ru.sbt.mipt.oop.sensor_event.SensorEvent;
-import ru.sbt.mipt.oop.sensor_event.types.SensorEventType;
+import ru.sbt.mipt.oop.sensor_event.action_types.SensorEventType;
+import ru.sbt.mipt.oop.sensor_event.types.LightEvent;
 import ru.sbt.mipt.oop.smart_devices.Light;
 import ru.sbt.mipt.oop.smart_home.Actionable;
 import ru.sbt.mipt.oop.smart_home.SmartHome;
@@ -18,24 +19,24 @@ public class LightHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        if (event.getType() != SensorEventType.LIGHT_EVENT){
+        if (!(event instanceof LightEvent)) {
             return;
         }
 
         smartHome.execute(
                 (Actionable actionable) -> {
-            if (!(actionable instanceof Light)) return;
-            Light light = (Light) actionable;
-            if (!(light.getId().equals(event.getObjectId()))) return;
+                    if (!(actionable instanceof Light)) return;
+                    Light light = (Light) actionable;
+                    if (!(light.getId().equals(event.getObjectId()))) return;
 
-            if (event.getType().equals(LightActionType.ON)) {
-                setLightOn(light);
-            }
-            if (event.getType().equals(LightActionType.OFF)) {
-                setLightOff(light);
-            }
+                    if (event.getActionType() == LightActionType.ON) {
+                        setLightOn(light);
+                    }
+                    if (event.getActionType() == LightActionType.OFF) {
+                        setLightOff(light);
+                    }
 
-        });
+                });
     }
 
     private void setLightOff(Light light) {

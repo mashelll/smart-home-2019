@@ -11,9 +11,8 @@ public class Deactivated implements AlarmState {
 
     @Override
     public void activate(int code) {
-        if (alarm.verifyCode(code)) {
-            alarm.setState(new Activated(alarm));
-        }
+        alarm.setCode(code);
+        alarm.setState(new Activated(alarm));
     }
 
     @Override

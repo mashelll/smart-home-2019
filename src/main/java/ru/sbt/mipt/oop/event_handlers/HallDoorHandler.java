@@ -1,8 +1,12 @@
 package ru.sbt.mipt.oop.event_handlers;
 
-import ru.sbt.mipt.oop.sensor_event.types.DoorActionType;
+import ru.sbt.mipt.oop.command.CommandSender;
+import ru.sbt.mipt.oop.command.CommandType;
+import ru.sbt.mipt.oop.command.SensorCommand;
+import ru.sbt.mipt.oop.sensor_event.action_types.DoorActionType;
 import ru.sbt.mipt.oop.sensor_event.SensorEvent;
-import ru.sbt.mipt.oop.sensor_event.types.SensorEventType;
+import ru.sbt.mipt.oop.sensor_event.action_types.SensorEventType;
+import ru.sbt.mipt.oop.sensor_event.types.DoorEvent;
 import ru.sbt.mipt.oop.smart_devices.Door;
 import ru.sbt.mipt.oop.smart_devices.Light;
 import ru.sbt.mipt.oop.smart_home.Actionable;
@@ -18,7 +22,7 @@ public class HallDoorHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        if (event.getType() != SensorEventType.DOOR_EVENT) return;
+        if (!(event instanceof DoorEvent)) return;
         if (event.getActionType() != DoorActionType.CLOSE) return;
 
         smartHome.execute((Actionable actionable) -> {
@@ -39,6 +43,8 @@ public class HallDoorHandler implements EventHandler {
         smartHome.execute((Actionable actionable) -> {
             if (!(actionable instanceof Light)) return;
             ((Light) actionable).setOn(false);
+            SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, ((Light) actionable).getId());
+            CommandSender.sendCommand(command);
         });
     }
 }
