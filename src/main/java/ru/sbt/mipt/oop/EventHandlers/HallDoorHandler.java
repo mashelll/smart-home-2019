@@ -1,5 +1,8 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
+import ru.sbt.mipt.oop.Command.CommandSender;
+import ru.sbt.mipt.oop.Command.CommandType;
+import ru.sbt.mipt.oop.Command.SensorCommand;
 import ru.sbt.mipt.oop.SensorEvent.Types.DoorActionType;
 import ru.sbt.mipt.oop.SensorEvent.SensorEvent;
 import ru.sbt.mipt.oop.SensorEvent.Types.SensorEventType;
@@ -39,6 +42,8 @@ public class HallDoorHandler implements EventHandler {
         smartHome.execute((Actionable actionable) -> {
             if (!(actionable instanceof Light)) return;
             ((Light) actionable).setOn(false);
+            SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, ((Light) actionable).getId());
+            CommandSender.sendCommand(command);
         });
     }
 }
