@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.reading.utils.SmartHomeReader;
 import ru.sbt.mipt.oop.reading.utils.SmartHomeReaderJSON;
-import ru.sbt.mipt.oop.smart_home.SmartHome;
+import ru.sbt.mipt.oop.smart.home.SmartHome;
 
 public class Application {
 

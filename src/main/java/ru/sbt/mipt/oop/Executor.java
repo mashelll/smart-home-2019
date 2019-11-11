@@ -1,11 +1,11 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.event_handlers.EventHandler;
-import ru.sbt.mipt.oop.event_handlers.HandlersConstructor;
-import ru.sbt.mipt.oop.smart_home.SmartHome;
-import ru.sbt.mipt.oop.sensor_event.SensorEvent;
-import ru.sbt.mipt.oop.sensor_event.SensorEventGenerator;
-import ru.sbt.mipt.oop.sensor_event.SensorEventGetter;
+import ru.sbt.mipt.oop.event.handlers.EventHandler;
+import ru.sbt.mipt.oop.event.handlers.HandlersConstructor;
+import ru.sbt.mipt.oop.smart.home.SmartHome;
+import ru.sbt.mipt.oop.sensor.event.SensorEvent;
+import ru.sbt.mipt.oop.sensor.event.SensorEventGenerator;
+import ru.sbt.mipt.oop.sensor.event.SensorEventGetter;
 
 import java.util.List;
 

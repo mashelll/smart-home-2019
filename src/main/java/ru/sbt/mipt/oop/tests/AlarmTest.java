@@ -2,12 +2,11 @@ package ru.sbt.mipt.oop.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.sbt.mipt.oop.smart_devices.alarm.Alarm;
-import ru.sbt.mipt.oop.smart_devices.alarm.states.Activated;
-import ru.sbt.mipt.oop.smart_devices.alarm.states.Alert;
-import ru.sbt.mipt.oop.smart_devices.alarm.states.Deactivated;
+import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
+import ru.sbt.mipt.oop.smart.devices.alarm.Activated;
+import ru.sbt.mipt.oop.smart.devices.alarm.Alert;
+import ru.sbt.mipt.oop.smart.devices.alarm.Deactivated;
 
-import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

@@ -2,16 +2,16 @@ package ru.sbt.mipt.oop.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.sbt.mipt.oop.event_handlers.DoorHandler;
-import ru.sbt.mipt.oop.event_handlers.EventHandler;
+import ru.sbt.mipt.oop.event.handlers.DoorHandler;
+import ru.sbt.mipt.oop.event.handlers.EventHandler;
 import ru.sbt.mipt.oop.reading.utils.SmartHomeReader;
 import ru.sbt.mipt.oop.reading.utils.SmartHomeReaderJSON;
-import ru.sbt.mipt.oop.sensor_event.SensorEvent;
-import ru.sbt.mipt.oop.sensor_event.action_types.DoorActionType;
-import ru.sbt.mipt.oop.sensor_event.action_types.SensorEventType;
-import ru.sbt.mipt.oop.smart_devices.Door;
-import ru.sbt.mipt.oop.smart_home.Actionable;
-import ru.sbt.mipt.oop.smart_home.SmartHome;
+import ru.sbt.mipt.oop.sensor.event.SensorEvent;
+import ru.sbt.mipt.oop.sensor.event.action_types.DoorActionType;
+import ru.sbt.mipt.oop.sensor.event.action_types.SensorEventType;
+import ru.sbt.mipt.oop.smart.devices.Door;
+import ru.sbt.mipt.oop.smart.home.Actionable;
+import ru.sbt.mipt.oop.smart.home.SmartHome;
 
 import static org.junit.jupiter.api.Assertions.*;
 
