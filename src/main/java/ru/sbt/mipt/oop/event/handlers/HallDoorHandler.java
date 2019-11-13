@@ -8,9 +8,9 @@ import ru.sbt.mipt.oop.sensor.event.SensorEvent;
 import ru.sbt.mipt.oop.sensor.event.types.DoorEvent;
 import ru.sbt.mipt.oop.smart.devices.Door;
 import ru.sbt.mipt.oop.smart.devices.Light;
-import ru.sbt.mipt.oop.smart.home.Actionable;
-import ru.sbt.mipt.oop.smart.home.Room;
-import ru.sbt.mipt.oop.smart.home.SmartHome;
+import ru.sbt.mipt.oop.smarthome.Actionable;
+import ru.sbt.mipt.oop.smarthome.Room;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 
 public class HallDoorHandler implements EventHandler {
     private final SmartHome smartHome;

@@ -5,8 +5,8 @@ import ru.sbt.mipt.oop.sensor.event.action_types.AlarmActionType;
 import ru.sbt.mipt.oop.sensor.event.types.AlarmEvent;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alert;
-import ru.sbt.mipt.oop.smart.home.Actionable;
-import ru.sbt.mipt.oop.smart.home.SmartHome;
+import ru.sbt.mipt.oop.smarthome.Actionable;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 
 public class AlarmHandler implements EventHandler {
     private final SmartHome smartHome;

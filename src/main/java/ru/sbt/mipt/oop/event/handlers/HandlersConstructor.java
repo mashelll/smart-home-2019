@@ -3,7 +3,7 @@ import ru.sbt.mipt.oop.event.handlers.decorators.AlarmStateDecorator;
 import ru.sbt.mipt.oop.notifiers.Notifier;
 import ru.sbt.mipt.oop.notifiers.SMSNotification;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
-import ru.sbt.mipt.oop.smart.home.SmartHome;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop.reading.utils;
 
-import ru.sbt.mipt.oop.smart.home.SmartHome;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 
 
 public interface SmartHomeReader {

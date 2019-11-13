@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop.smart.home;
+package ru.sbt.mipt.oop.smarthome;
 
 public interface Action {
     void run(Actionable actionable);

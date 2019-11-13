@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.event.handlers.EventHandler;
 import ru.sbt.mipt.oop.event.handlers.HandlersConstructor;
-import ru.sbt.mipt.oop.smart.home.SmartHome;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
 import ru.sbt.mipt.oop.sensor.event.SensorEventGenerator;
 import ru.sbt.mipt.oop.sensor.event.SensorEventGetter;

@@ -4,8 +4,8 @@ import ru.sbt.mipt.oop.sensor.event.action_types.LightActionType;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
 import ru.sbt.mipt.oop.sensor.event.types.LightEvent;
 import ru.sbt.mipt.oop.smart.devices.Light;
-import ru.sbt.mipt.oop.smart.home.Actionable;
-import ru.sbt.mipt.oop.smart.home.SmartHome;
+import ru.sbt.mipt.oop.smarthome.Actionable;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 
 
 public class LightHandler implements EventHandler {

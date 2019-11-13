@@ -1,7 +1,7 @@
 package ru.sbt.mipt.oop.smart.devices;
 
-import ru.sbt.mipt.oop.smart.home.Action;
-import ru.sbt.mipt.oop.smart.home.Actionable;
+import ru.sbt.mipt.oop.smarthome.Action;
+import ru.sbt.mipt.oop.smarthome.Actionable;
 
 public class SmartDevice implements Actionable {
     private final String id;
