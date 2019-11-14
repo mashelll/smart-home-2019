@@ -2,12 +2,11 @@ package ru.sbt.mipt.oop;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.sbt.mipt.oop.event_handlers.EventHandler;
-import ru.sbt.mipt.oop.reading_utils.SmartHomeReader;
-import ru.sbt.mipt.oop.reading_utils.SmartHomeReaderJSON;
-import ru.sbt.mipt.oop.sensor_event.SensorEventAdapter;
-import ru.sbt.mipt.oop.smart_devices.alarm.Alarm;
-import ru.sbt.mipt.oop.smart_home.SmartHome;
+import ru.sbt.mipt.oop.reading.utils.SmartHomeReader;
+import ru.sbt.mipt.oop.reading.utils.SmartHomeReaderJSON;
+import ru.sbt.mipt.oop.sensor.event.SensorEventAdapter;
+import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 
 @Configuration
 public class SpringConfiguration {
@@ -18,7 +17,7 @@ public class SpringConfiguration {
         }
 
         @Bean
-        Alarm alarm(String alarmId, int alarmCode) {
+        Alarm alarm(String alarmId, String alarmCode) {
             return new Alarm(alarmId, alarmCode);
         }
 
