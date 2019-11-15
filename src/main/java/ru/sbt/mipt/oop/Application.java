@@ -1,18 +1,13 @@
 package ru.sbt.mipt.oop;
 
-
-import ru.sbt.mipt.oop.ReadingUtils.SmartHomeReader;
-import ru.sbt.mipt.oop.ReadingUtils.SmartHomeReaderJSON;
-import ru.sbt.mipt.oop.SmartHome.SmartHome;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 public class Application {
 
-
     public static void main(String... args) {
-        SmartHomeReader smartHomeReader = new SmartHomeReaderJSON();
-        SmartHome smartHome = smartHomeReader.read();
-        Executor.run(smartHome);
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        Executor executor =  context.getBean(Executor.class);
+        executor.run();
     }
-
-
 }

@@ -1,8 +1,8 @@
 # smart-home
 
 Project Smart Home implements 'smart home''.
-The house has sensors which are connected to a central server and send events in case of lights on/off doors open/close.
-The system receives events of type SensorEvent.
+The house has sensors which are connected to a central server and send smartHome.events in case of lights on/off doors open/close.
+The system receives smartHome.events of type SensorEvent.
 <br/>
 SmartHome - the home itself, contains rooms<br/>
 Room - room, contains doors and lights<br/>

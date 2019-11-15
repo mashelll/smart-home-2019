@@ -1,17 +1,22 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.EventHandlers.EventHandler;
-import ru.sbt.mipt.oop.EventHandlers.HandlersConstructor;
-import ru.sbt.mipt.oop.SmartHome.SmartHome;
-import ru.sbt.mipt.oop.SensorEvent.SensorEvent;
-import ru.sbt.mipt.oop.SensorEvent.SensorEventGenerator;
-import ru.sbt.mipt.oop.SensorEvent.SensorEventGetter;
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.sbt.mipt.oop.event.handlers.EventHandler;
+import ru.sbt.mipt.oop.event.handlers.HandlersConstructor;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
+import ru.sbt.mipt.oop.sensor.event.SensorEvent;
+import ru.sbt.mipt.oop.sensor.event.SensorEventGenerator;
+import ru.sbt.mipt.oop.sensor.event.SensorEventGetter;
 
 import java.util.List;
 
 public class Executor {
-    public static void run(SmartHome smartHome) {
-        List<EventHandler> handlers = HandlersConstructor.constructHandlers(smartHome);
+    @Autowired
+    private static SmartHome smartHome;
+    private static List<EventHandler> handlers = HandlersConstructor.constructHandlers(smartHome);
+
+    public void run() {
+
         SensorEventGetter sensorEventGetter = new SensorEventGenerator();
         SensorEvent event = sensorEventGetter.getNextSensorEvent();
         while (event != null) {
