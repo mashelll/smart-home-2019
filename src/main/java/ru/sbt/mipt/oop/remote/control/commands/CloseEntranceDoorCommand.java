@@ -5,10 +5,10 @@ import ru.sbt.mipt.oop.smarthome.Actionable;
 import ru.sbt.mipt.oop.smarthome.Room;
 import ru.sbt.mipt.oop.smarthome.SmartHome;
 
-public class CloseHallDoorCommand implements Command {
+public class CloseEntranceDoorCommand implements Command {
     private final SmartHome smartHome;
 
-    public CloseHallDoorCommand(SmartHome smartHome) {
+    public CloseEntranceDoorCommand(SmartHome smartHome) {
         this.smartHome = smartHome;
     }
 
