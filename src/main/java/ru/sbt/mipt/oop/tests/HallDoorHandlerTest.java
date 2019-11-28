@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.sbt.mipt.oop.event_handlers.EventHandler;
+import ru.sbt.mipt.oop.sensor_event_handlers.SensorEventHandler;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReader;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReaderJSON;
 import ru.sbt.mipt.oop.sensor_event.SensorEvent;
@@ -21,7 +21,7 @@ import java.util.List;
 
 class HallDoorHandlerTest {
     private SmartHome smartHome;
-    private EventHandler eventHandler;
+    private SensorEventHandler sensorEventHandler;
     private List<String> turnedOnLights;
     private List<String> turnedOffLights;
     private String HALL_DOOR_ID;
@@ -39,7 +39,7 @@ class HallDoorHandlerTest {
     void testAllTurnedOnLightsTurnOffAfterClosingHallDoor() {
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.CLOSE, HALL_DOOR_ID);
         checkLightsCondition(turnedOnLights, true);
-        eventHandler.handleEvent(event);
+        sensorEventHandler.handleEvent(event);
         checkLightsCondition(turnedOnLights, false);
     }
 
@@ -47,7 +47,7 @@ class HallDoorHandlerTest {
     void testAllTurnedOffLightsRemainTurnedOffAfterClosingHallDoor() {
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.CLOSE, HALL_DOOR_ID);
         checkLightsCondition(turnedOffLights, false);
-        eventHandler.handleEvent(event);
+        sensorEventHandler.handleEvent(event);
         checkLightsCondition(turnedOffLights, false);
     }
 
@@ -58,7 +58,7 @@ class HallDoorHandlerTest {
             SensorEvent event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.CLOSE, notHallDoor);
             checkLightsCondition(turnedOnLights, true);
             checkLightsCondition(turnedOffLights, false);
-            eventHandler.handleEvent(event);
+            sensorEventHandler.handleEvent(event);
             checkLightsCondition(turnedOnLights, true);
             checkLightsCondition(turnedOffLights, false);
         }

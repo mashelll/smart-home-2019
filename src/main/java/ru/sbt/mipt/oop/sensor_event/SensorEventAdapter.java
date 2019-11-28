@@ -1,10 +1,9 @@
 package ru.sbt.mipt.oop.sensor_event;
 
 import com.coolcompany.smarthome.events.CCSensorEvent;
-import com.coolcompany.smarthome.events.SensorEventsManager;
-import ru.sbt.mipt.oop.Executor;
-import ru.sbt.mipt.oop.event_handlers.EventHandler;
-import ru.sbt.mipt.oop.smart_home.SmartHome;
+import com.coolcompany.smarthome.events.EventHandler;
+import ru.sbt.mipt.oop.sensor_event_handlers.SensorEventHandler;
+
 
 import static ru.sbt.mipt.oop.sensor_event.types.DoorActionType.CLOSE;
 import static ru.sbt.mipt.oop.sensor_event.types.DoorActionType.OPEN;
@@ -13,18 +12,24 @@ import static ru.sbt.mipt.oop.sensor_event.types.LightActionType.ON;
 import static ru.sbt.mipt.oop.sensor_event.types.SensorEventType.DOOR_EVENT;
 import static ru.sbt.mipt.oop.sensor_event.types.SensorEventType.LIGHT_EVENT;
 
-public class SensorEventAdapter extends Executor {
-    SensorEventsManager sensorEventsManager = new SensorEventsManager();
-    SensorEvent sensorEvent;
+public class SensorEventAdapter implements EventHandler {
 
-    public void run() {
-        sensorEventsManager.registerEventHandler(event -> {
-            System.out.println(adaptEvent(event));
-        });
-        sensorEventsManager.start();
+    private final SensorEventHandler sensorEventHandler;
+
+    public SensorEventAdapter(SensorEventHandler sensorEventHandler) {
+        this.sensorEventHandler = sensorEventHandler;
     }
-
-    private SensorEvent adaptEvent(CCSensorEvent event) {
+    
+    @Override
+    public void handleEvent(CCSensorEvent ccSensorevent) {
+        SensorEvent sensorEvent = adaptCCSensorEvent(ccSensorevent);
+        if (sensorEvent != null) {
+            sensorEventHandler.handleEvent(sensorEvent);
+        }
+    }
+    
+    private SensorEvent adaptCCSensorEvent(CCSensorEvent event) {
+        SensorEvent sensorEvent = null;
         switch (event.getEventType()) {
             case "LightIsOn":
                 sensorEvent = new SensorEvent(LIGHT_EVENT, ON, event.getObjectId());

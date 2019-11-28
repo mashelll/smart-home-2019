@@ -2,8 +2,8 @@ package ru.sbt.mipt.oop.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.sbt.mipt.oop.event_handlers.DoorHandler;
-import ru.sbt.mipt.oop.event_handlers.EventHandler;
+import ru.sbt.mipt.oop.sensor_event_handlers.DoorHandler;
+import ru.sbt.mipt.oop.sensor_event_handlers.SensorEventHandler;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReader;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReaderJSON;
 import ru.sbt.mipt.oop.sensor_event.SensorEvent;
@@ -22,7 +22,7 @@ import java.util.Random;
 
 class DoorHandlerTest {
     private SmartHome smartHome;
-    private EventHandler eventHandler;
+    private SensorEventHandler sensorEventHandler;
     private List<String> openDoors;
     private List<String> closedDoors;
     private Random randomGenerator;
@@ -31,7 +31,7 @@ class DoorHandlerTest {
     void setUp() throws IOException {
         SmartHomeReader smartHomeReader = new SmartHomeReaderJSON();
         SmartHome smartHome = smartHomeReader.read();
-        eventHandler = new DoorHandler(smartHome);
+        sensorEventHandler = new DoorHandler(smartHome);
         openDoors = getDoors(true);
         closedDoors = getDoors(false);
         randomGenerator = new Random();
@@ -48,7 +48,7 @@ class DoorHandlerTest {
         String doorId = closedDoors.get(randInt);
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.OPEN, doorId);
 
-        eventHandler.handleEvent(event);
+        sensorEventHandler.handleEvent(event);
         closedDoors.remove(doorId);
         openDoors.add(doorId);
 
@@ -62,7 +62,7 @@ class DoorHandlerTest {
         String doorId = openDoors.get(randInt);
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_EVENT, DoorActionType.CLOSE, doorId);
 
-        eventHandler.handleEvent(event);
+        sensorEventHandler.handleEvent(event);
         openDoors.remove(doorId);
         closedDoors.add(doorId);
 

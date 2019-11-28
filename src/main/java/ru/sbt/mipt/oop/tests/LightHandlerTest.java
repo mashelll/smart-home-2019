@@ -2,13 +2,11 @@ package ru.sbt.mipt.oop.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.sbt.mipt.oop.event_handlers.EventHandler;
-import ru.sbt.mipt.oop.event_handlers.LightHandler;
+import ru.sbt.mipt.oop.sensor_event_handlers.SensorEventHandler;
+import ru.sbt.mipt.oop.sensor_event_handlers.LightHandler;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReader;
 import ru.sbt.mipt.oop.reading_utils.SmartHomeReaderJSON;
 import ru.sbt.mipt.oop.sensor_event.SensorEvent;
-import ru.sbt.mipt.oop.sensor_event.SensorEventGenerator;
-import ru.sbt.mipt.oop.sensor_event.SensorEventGetter;
 import ru.sbt.mipt.oop.sensor_event.types.LightActionType;
 import ru.sbt.mipt.oop.sensor_event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart_devices.Light;
@@ -24,7 +22,7 @@ import java.util.Random;
 
 class LightHandlerTest {
     private SmartHome smartHome;
-    private EventHandler eventHandler;
+    private SensorEventHandler sensorEventHandler;
     private List<String> turnedOnLights;
     private List<String> turnedOffLights;
     private Random randomGenerator;
@@ -33,7 +31,7 @@ class LightHandlerTest {
     void setUp() throws IOException {
         SmartHomeReader smartHomeReader = new SmartHomeReaderJSON();
         SmartHome smartHome = smartHomeReader.read();
-        eventHandler = new LightHandler(smartHome);
+        sensorEventHandler = new LightHandler(smartHome);
         turnedOnLights = getLights(true);
         turnedOffLights = getLights(false);
         randomGenerator = new Random();
@@ -44,7 +42,7 @@ class LightHandlerTest {
         int randInt = randomGenerator.nextInt(5);
         String lightId = turnedOffLights.get(randInt);
         SensorEvent event = new SensorEvent(SensorEventType.LIGHT_EVENT, LightActionType.ON, lightId);
-        eventHandler.handleEvent(event);
+        sensorEventHandler.handleEvent(event);
         turnedOnLights = getLights(true);
         turnedOffLights = getLights(false);
         turnedOffLights.remove(lightId);
@@ -60,7 +58,7 @@ class LightHandlerTest {
         String lightId = turnedOnLights.get(randInt);
         SensorEvent event = new SensorEvent(SensorEventType.LIGHT_EVENT, LightActionType.OFF, lightId);
 
-        eventHandler.handleEvent(event);
+        sensorEventHandler.handleEvent(event);
         turnedOnLights.remove(lightId);
         turnedOffLights.add(lightId);
 

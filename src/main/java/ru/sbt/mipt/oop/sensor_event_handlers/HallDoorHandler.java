@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop.event_handlers;
+package ru.sbt.mipt.oop.sensor_event_handlers;
 
 import ru.sbt.mipt.oop.sensor_event.types.DoorActionType;
 import ru.sbt.mipt.oop.sensor_event.SensorEvent;
@@ -9,7 +9,7 @@ import ru.sbt.mipt.oop.smart_home.Actionable;
 import ru.sbt.mipt.oop.smart_home.Room;
 import ru.sbt.mipt.oop.smart_home.SmartHome;
 
-public class HallDoorHandler implements EventHandler {
+public class HallDoorHandler implements SensorEventHandler {
     private final SmartHome smartHome;
 
     public HallDoorHandler(SmartHome smartHome) {
