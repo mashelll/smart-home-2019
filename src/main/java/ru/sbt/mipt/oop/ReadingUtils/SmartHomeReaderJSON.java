@@ -22,3 +22,4 @@ public class SmartHomeReaderJSON implements SmartHomeReader {
         return smartHome;
     }
 }
+

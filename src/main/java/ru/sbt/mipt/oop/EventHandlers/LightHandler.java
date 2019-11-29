@@ -1,8 +1,8 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
-import ru.sbt.mipt.oop.SensorEvent.LightActionType;
+import ru.sbt.mipt.oop.SensorEvent.Types.LightActionType;
 import ru.sbt.mipt.oop.SensorEvent.SensorEvent;
-import ru.sbt.mipt.oop.SensorEvent.SensorEventType;
+import ru.sbt.mipt.oop.SensorEvent.Types.SensorEventType;
 import ru.sbt.mipt.oop.SmartDevices.Light;
 import ru.sbt.mipt.oop.SmartHome.Actionable;
 import ru.sbt.mipt.oop.SmartHome.SmartHome;
