@@ -1,9 +1,8 @@
 package ru.sbt.mipt.oop;
 
-
-import ru.sbt.mipt.oop.ReadingUtils.SmartHomeReader;
-import ru.sbt.mipt.oop.ReadingUtils.SmartHomeReaderJSON;
-import ru.sbt.mipt.oop.SmartHome.SmartHome;
+import ru.sbt.mipt.oop.reading.utils.SmartHomeReader;
+import ru.sbt.mipt.oop.reading.utils.SmartHomeReaderJSON;
+import ru.sbt.mipt.oop.smarthome.SmartHome;
 
 public class Application {
 
@@ -13,6 +12,4 @@ public class Application {
         SmartHome smartHome = smartHomeReader.read();
         Executor.run(smartHome);
     }
-
-
 }
