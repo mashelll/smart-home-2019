@@ -16,9 +16,6 @@ import java.util.Arrays;
 
 public class HomeBuilder {
 
-
-    int alarmCode = 12345;
-    String alarmId = "0";
     @Autowired
     static Alarm alarm;
 
