@@ -4,12 +4,16 @@ import ru.sbt.mipt.oop.smart.devices.SmartDevice;
 
 public class Alarm extends SmartDevice {
     private AlarmState state;
-    private int code;
+    private String code;
 
-    public Alarm(String id, int code) {
+    public Alarm(String id, String code) {
         super(id);
         this.code = code;
         this.state = new Deactivated(this);
+    }
+
+    public String getCode() {
+        return this.code;
     }
 
     public void setState(AlarmState state) {
@@ -20,19 +24,19 @@ public class Alarm extends SmartDevice {
         return state;
     }
 
-    void setCode(int code) {
+    void setCode(String code) {
         this.code = code;
     }
 
-    public boolean verifyCode(int code) {
+    public boolean verifyCode(String code) {
         return (this.code == code);
     }
 
-    public void activate(int code) {
+    public void activate(String code) {
         state.activate(code);
     }
 
-    public void deactivate(int code) {
+    public void deactivate(String code) {
         state.deactivate(code);
     }
 

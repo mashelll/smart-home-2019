@@ -1,7 +1,7 @@
 package ru.sbt.mipt.oop.sensor.event;
 
-import ru.sbt.mipt.oop.sensor.event.action_types.ActionType;
-import ru.sbt.mipt.oop.sensor.event.action_types.SensorEventType;
+import ru.sbt.mipt.oop.sensor.event.types.ActionType;
+import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 
 public class SensorEvent {
     private final SensorEventType type;

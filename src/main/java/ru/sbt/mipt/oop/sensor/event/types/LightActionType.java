@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop.sensor.event.action_types;
+package ru.sbt.mipt.oop.sensor.event.types;
 
 public enum LightActionType implements ActionType {
     ON, OFF

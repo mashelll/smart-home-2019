@@ -3,9 +3,9 @@ package ru.sbt.mipt.oop.sensor.event;
 
 import ru.sbt.mipt.oop.sensor.event.types.AlarmEvent;
 import ru.sbt.mipt.oop.sensor.event.types.DoorEvent;
-import ru.sbt.mipt.oop.sensor.event.action_types.AlarmActionType;
-import ru.sbt.mipt.oop.sensor.event.action_types.DoorActionType;
-import ru.sbt.mipt.oop.sensor.event.action_types.LightActionType;
+import ru.sbt.mipt.oop.sensor.event.types.AlarmActionType;
+import ru.sbt.mipt.oop.sensor.event.types.DoorActionType;
+import ru.sbt.mipt.oop.sensor.event.types.LightActionType;
 import ru.sbt.mipt.oop.sensor.event.types.LightEvent;
 
 import static java.lang.StrictMath.abs;

@@ -3,16 +3,16 @@ package ru.sbt.mipt.oop.event.handlers;
 import ru.sbt.mipt.oop.command.CommandSender;
 import ru.sbt.mipt.oop.command.CommandType;
 import ru.sbt.mipt.oop.command.SensorCommand;
-import ru.sbt.mipt.oop.sensor.event.action_types.DoorActionType;
+import ru.sbt.mipt.oop.sensor.event.types.DoorActionType;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
-import ru.sbt.mipt.oop.sensor.event.types.DoorEvent;
+import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart.devices.Door;
 import ru.sbt.mipt.oop.smart.devices.Light;
 import ru.sbt.mipt.oop.smarthome.Actionable;
 import ru.sbt.mipt.oop.smarthome.Room;
 import ru.sbt.mipt.oop.smarthome.SmartHome;
 
-public class HallDoorHandler implements EventHandler {
+public class HallDoorHandler implements SensorEventHandler {
     private final SmartHome smartHome;
 
     public HallDoorHandler(SmartHome smartHome) {
@@ -21,7 +21,7 @@ public class HallDoorHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        if (!(event instanceof DoorEvent)) return;
+        if (!(event.getType() != SensorEventType.DOOR_EVENT)) return;
         if (event.getActionType() != DoorActionType.CLOSE) return;
 
         smartHome.execute((Actionable actionable) -> {
