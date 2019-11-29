@@ -14,6 +14,4 @@ public class HandlerDecorator implements EventHandler {
     public void handleEvent(SensorEvent event) {
         wrapped.handleEvent(event);
     }
-
-
 }
