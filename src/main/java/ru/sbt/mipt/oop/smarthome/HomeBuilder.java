@@ -29,7 +29,7 @@ public class HomeBuilder {
                 Arrays.asList(new Door(false, "4")),
                 "hall");
 
-        int alarmCode = 12345;
+        String alarmCode = "12345";
         String alarmId = "0";
         Alarm alarm = new Alarm(alarmId, alarmCode);
 

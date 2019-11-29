@@ -13,9 +13,9 @@ public class HandlersConstructor {
         List<SensorEventHandler> handlers = new ArrayList<>();
         Notifier notifier = new SMSNotification();
         Alarm alarm = smartHome.getAlarm();
-        handlers.add(new AlarmStateDecorator(new LightHandler(smartHome), alarm, notifier));
-        handlers.add(new AlarmStateDecorator(new DoorHandler(smartHome), alarm, notifier));
-        handlers.add(new AlarmStateDecorator(new HallDoorHandler(smartHome), alarm, notifier));
+        handlers.add(new AlarmStateDecorator(new LightHandler(smartHome), alarm));
+        handlers.add(new AlarmStateDecorator(new DoorHandler(smartHome), alarm));
+        handlers.add(new AlarmStateDecorator(new HallDoorHandler(smartHome), alarm));
         handlers.add(new AlarmHandler(smartHome));
         return handlers;
     }

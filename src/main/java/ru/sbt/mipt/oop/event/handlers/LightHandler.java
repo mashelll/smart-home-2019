@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.event.handlers;
 
 import ru.sbt.mipt.oop.sensor.event.types.LightActionType;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
-import ru.sbt.mipt.oop.sensor.event.types.LightEvent;
+import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart.devices.Light;
 import ru.sbt.mipt.oop.smarthome.Actionable;
 import ru.sbt.mipt.oop.smarthome.SmartHome;
@@ -18,7 +18,7 @@ public class LightHandler implements SensorEventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        if (!(event instanceof LightEvent)) {
+        if (!(event.getType() != SensorEventType.LIGHT_EVENT)) {
             return;
         }
 
