@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop.smart.devices;
 
 public class Light extends SmartDevice {
+
     private boolean isOn;
 
     public Light(String id, boolean isOn) {

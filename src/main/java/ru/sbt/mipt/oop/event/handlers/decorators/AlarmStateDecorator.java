@@ -2,13 +2,15 @@ package ru.sbt.mipt.oop.event.handlers.decorators;
 
 import ru.sbt.mipt.oop.event.handlers.SensorEventHandler;
 import ru.sbt.mipt.oop.notifiers.Notifier;
-import ru.sbt.mipt.oop.notifiers.SMSNotification;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
-import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
 import ru.sbt.mipt.oop.smart.devices.alarm.Activated;
 import ru.sbt.mipt.oop.smart.devices.alarm.AlarmState;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alert;
+import ru.sbt.mipt.oop.notifiers.SMSNotification;
+import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
+
+
 
 public class AlarmStateDecorator extends HandlerDecorator {
     private final Alarm alarm;

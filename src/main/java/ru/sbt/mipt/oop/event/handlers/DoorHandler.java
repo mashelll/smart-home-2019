@@ -16,7 +16,7 @@ public class DoorHandler implements SensorEventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        if (event.getType() != SensorEventType.DOOR_EVENT) return;
+        if (!(event.getType() != SensorEventType.DOOR_EVENT)) return;
 
         smartHome.execute( (Actionable actionable) -> {
             if (!(actionable instanceof Door)) return;

@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop.smart.devices;
 
 public class Door extends SmartDevice {
+
     private boolean isOpen;
 
     public Door(boolean isOpen, String id) {
