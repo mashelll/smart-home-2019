@@ -7,7 +7,7 @@ import ru.sbt.mipt.oop.smart.devices.Light;
 import java.util.Collection;
 
 
-public class Room  implements HomeObject, Actionable{
+public class Room  implements Actionable{
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;

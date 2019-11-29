@@ -2,6 +2,7 @@ package ru.sbt.mipt.oop.smarthome;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.sbt.mipt.oop.smart.devices.Door;
 import ru.sbt.mipt.oop.smart.devices.Light;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
@@ -14,6 +15,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class HomeBuilder {
+
+    @Autowired
+    static Alarm alarm;
 
     public static void main(String[] args) throws IOException {
         Room kitchen = new Room(Arrays.asList(new Light("1", false), new Light("2", true)),
@@ -28,10 +32,6 @@ public class HomeBuilder {
         Room hall = new Room(Arrays.asList(new Light("7", false), new Light("8", false), new Light("9", false)),
                 Arrays.asList(new Door(false, "4")),
                 "hall");
-
-        String alarmCode = "12345";
-        String alarmId = "0";
-        Alarm alarm = new Alarm(alarmId, alarmCode);
 
         SmartHome smartHome = new SmartHome(alarm, Arrays.asList(kitchen, bathroom, bedroom, hall));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

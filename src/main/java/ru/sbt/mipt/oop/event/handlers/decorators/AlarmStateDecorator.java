@@ -11,6 +11,7 @@ import ru.sbt.mipt.oop.notifiers.SMSNotification;
 import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 
 
+
 public class AlarmStateDecorator extends HandlerDecorator {
     private final Alarm alarm;
 
