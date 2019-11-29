@@ -1,13 +1,10 @@
 package ru.sbt.mipt.oop.smart.devices.alarm;
 
-import ru.sbt.mipt.oop.smart.devices.alarm.states.AlarmState;
 import ru.sbt.mipt.oop.smart.devices.SmartDevice;
-import ru.sbt.mipt.oop.smart.devices.alarm.states.Deactivated;
 
 public class Alarm extends SmartDevice {
     private AlarmState state;
-    private final int code;
-    private boolean isAlert;
+    private int code;
 
     public Alarm(String id, int code) {
         super(id);
@@ -21,6 +18,10 @@ public class Alarm extends SmartDevice {
 
     public AlarmState getState() {
         return state;
+    }
+
+    void setCode(int code) {
+        this.code = code;
     }
 
     public boolean verifyCode(int code) {

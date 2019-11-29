@@ -1,6 +1,4 @@
-package ru.sbt.mipt.oop.smart.devices.alarm.states;
-
-import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
+package ru.sbt.mipt.oop.smart.devices.alarm;
 
 public class Deactivated implements AlarmState {
     private Alarm alarm;
@@ -11,9 +9,8 @@ public class Deactivated implements AlarmState {
 
     @Override
     public void activate(int code) {
-        if (alarm.verifyCode(code)) {
-            alarm.setState(new Activated(alarm));
-        }
+        alarm.setCode(code);
+        alarm.setState(new Activated(alarm));
     }
 
     @Override

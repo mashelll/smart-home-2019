@@ -6,9 +6,9 @@ import ru.sbt.mipt.oop.notifiers.SMSNotification;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
 import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
-import ru.sbt.mipt.oop.smart.devices.alarm.states.Activated;
-import ru.sbt.mipt.oop.smart.devices.alarm.states.AlarmState;
-import ru.sbt.mipt.oop.smart.devices.alarm.states.Alert;
+import ru.sbt.mipt.oop.smart.devices.alarm.Activated;
+import ru.sbt.mipt.oop.smart.devices.alarm.AlarmState;
+import ru.sbt.mipt.oop.smart.devices.alarm.Alert;
 
 public class AlarmStateDecorator extends HandlerDecorator {
     private final Alarm alarm;
