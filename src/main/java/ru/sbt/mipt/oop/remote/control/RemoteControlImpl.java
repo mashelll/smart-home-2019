@@ -7,17 +7,11 @@ import java.util.HashMap;
 
 public class RemoteControlImpl implements RemoteControl {
     private final HashMap<Button, Command> commands = new HashMap<>();
-    private final HashMap<String, Button> buttons = new HashMap<>();
+    private HashMap<String, Button> buttons = new HashMap<>();
 
-    public RemoteControlImpl() {
-        this.buttons.put("A", new Button("A"));
-        this.buttons.put("B", new Button("B"));
-        this.buttons.put("C", new Button("C"));
-        this.buttons.put("D", new Button("D"));
-        this.buttons.put("1", new Button("1"));
-        this.buttons.put("2", new Button("2"));
-        this.buttons.put("3", new Button("3"));
-        this.buttons.put("4", new Button("4"));
+    public RemoteControlImpl(HashMap<String, Button> buttons) {
+        this.buttons = buttons;
+
     }
 
     public void setCommand(String button, Command command) {

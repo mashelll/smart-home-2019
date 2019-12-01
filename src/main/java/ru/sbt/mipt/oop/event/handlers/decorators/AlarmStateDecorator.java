@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop.event.handlers.decorators;
 
-import ru.sbt.mipt.oop.event.handlers.EventHandler;
+import ru.sbt.mipt.oop.event.handlers.SensorEventHandler;
 import ru.sbt.mipt.oop.notifiers.Notifier;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
-import ru.sbt.mipt.oop.sensor.event.types.AlarmEvent;
+import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
 import ru.sbt.mipt.oop.smart.devices.alarm.Activated;
 import ru.sbt.mipt.oop.smart.devices.alarm.AlarmState;
@@ -13,7 +13,7 @@ public class AlarmStateDecorator extends HandlerDecorator {
     private final Alarm alarm;
     Notifier notifier;
 
-    public AlarmStateDecorator(EventHandler wrapped, Alarm alarm, Notifier notifier) {
+    public AlarmStateDecorator(SensorEventHandler wrapped, Alarm alarm, Notifier notifier) {
         super(wrapped);
         this.alarm = alarm;
         this.notifier = notifier;
@@ -27,7 +27,7 @@ public class AlarmStateDecorator extends HandlerDecorator {
             return;
         }
         if (state instanceof Activated) {
-            if (event instanceof AlarmEvent) {
+            if (event.getType() != SensorEventType.ALARM_EVENT) {
                 super.handleEvent(event);
                 return;
             }

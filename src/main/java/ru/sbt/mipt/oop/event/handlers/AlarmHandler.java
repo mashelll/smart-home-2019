@@ -1,14 +1,14 @@
 package ru.sbt.mipt.oop.event.handlers;
 
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
-import ru.sbt.mipt.oop.sensor.event.action.types.AlarmActionType;
-import ru.sbt.mipt.oop.sensor.event.types.AlarmEvent;
+import ru.sbt.mipt.oop.sensor.event.types.AlarmActionType;
+import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alert;
 import ru.sbt.mipt.oop.smarthome.Actionable;
 import ru.sbt.mipt.oop.smarthome.SmartHome;
 
-public class AlarmHandler implements EventHandler {
+public class AlarmHandler implements SensorEventHandler {
     private final SmartHome smartHome;
 
     public AlarmHandler(SmartHome smartHome) {
@@ -17,8 +17,8 @@ public class AlarmHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        if (!(event instanceof AlarmEvent)) return;
-        String code = ((AlarmEvent) event).getCode();
+        if (!(event.getType() != SensorEventType.ALARM_EVENT)) return;
+        String code = smartHome.getAlarm().getCode();
         smartHome.execute( (Actionable actionable) -> {
             if (!(actionable instanceof Alarm)) return;
             Alarm alarm = (Alarm) actionable;

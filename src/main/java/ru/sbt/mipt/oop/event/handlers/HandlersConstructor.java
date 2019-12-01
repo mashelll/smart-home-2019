@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HandlersConstructor {
-    public static List<EventHandler> constructHandlers(SmartHome smartHome) {
-        List<EventHandler> handlers = new ArrayList<>();
+    public static List<SensorEventHandler> constructHandlers(SmartHome smartHome) {
+        List<SensorEventHandler> handlers = new ArrayList<>();
         Notifier notifier = new SMSNotification();
         Alarm alarm = smartHome.getAlarm();
         handlers.add(new AlarmStateDecorator(new LightHandler(smartHome), alarm, notifier));

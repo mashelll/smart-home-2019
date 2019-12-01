@@ -39,4 +39,8 @@ public class Alarm extends SmartDevice {
     public void triggerAlert() {
         state.triggerAlert();
     }
+
+    public String getCode() {
+        return this.code;
+    }
 }

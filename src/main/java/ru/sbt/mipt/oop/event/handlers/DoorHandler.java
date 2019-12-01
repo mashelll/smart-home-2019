@@ -1,13 +1,13 @@
 package ru.sbt.mipt.oop.event.handlers;
 
-import ru.sbt.mipt.oop.sensor.event.action.types.DoorActionType;
+import ru.sbt.mipt.oop.sensor.event.types.DoorActionType;
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
-import ru.sbt.mipt.oop.sensor.event.types.DoorEvent;
+import ru.sbt.mipt.oop.sensor.event.types.SensorEventType;
 import ru.sbt.mipt.oop.smart.devices.Door;
 import ru.sbt.mipt.oop.smarthome.Actionable;
 import ru.sbt.mipt.oop.smarthome.SmartHome;
 
-public class DoorHandler implements EventHandler {
+public class DoorHandler implements SensorEventHandler {
     private final SmartHome smartHome;
 
     public DoorHandler(SmartHome smartHome) {
@@ -16,7 +16,7 @@ public class DoorHandler implements EventHandler {
 
     @Override
     public void handleEvent(SensorEvent event) {
-        if (!(event instanceof DoorEvent)) return;
+        if (!(event.getType() != SensorEventType.DOOR_EVENT)) return;
 
         smartHome.execute( (Actionable actionable) -> {
             if (!(actionable instanceof Door)) return;
