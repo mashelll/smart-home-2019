@@ -1,9 +1,9 @@
 package ru.sbt.mipt.oop;
 
+import com.coolcompany.smarthome.events.EventHandler;
 import com.coolcompany.smarthome.events.SensorEventsManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import rc.RemoteControl;
 import rc.RemoteControlRegistry;
 import ru.sbt.mipt.oop.event.handlers.*;
 import ru.sbt.mipt.oop.event.handlers.decorators.AlarmStateDecorator;
@@ -12,17 +12,20 @@ import ru.sbt.mipt.oop.notifiers.SMSNotification;
 import ru.sbt.mipt.oop.reading.utils.SmartHomeReader;
 import ru.sbt.mipt.oop.reading.utils.SmartHomeReaderJSON;
 import ru.sbt.mipt.oop.event.handlers.SensorEventAdapter;
-import ru.sbt.mipt.oop.remote.control.Button;
 import ru.sbt.mipt.oop.remote.control.RemoteControlImpl;
 import ru.sbt.mipt.oop.remote.control.commands.*;
-import ru.sbt.mipt.oop.sensor.event.SensorEvent;
+import ru.sbt.mipt.oop.sensor.event.factories.DoorEventFactory;
+import ru.sbt.mipt.oop.sensor.event.factories.LightEventFactory;
+import ru.sbt.mipt.oop.sensor.event.factories.SensorEventFactory;
 import ru.sbt.mipt.oop.smart.devices.alarm.Alarm;
 import ru.sbt.mipt.oop.smarthome.SmartHome;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
+import static ru.sbt.mipt.oop.sensor.event.types.DoorActionType.CLOSE;
+import static ru.sbt.mipt.oop.sensor.event.types.DoorActionType.OPEN;
+import static ru.sbt.mipt.oop.sensor.event.types.LightActionType.OFF;
+import static ru.sbt.mipt.oop.sensor.event.types.LightActionType.ON;
 
 
 @Configuration
@@ -43,13 +46,28 @@ public class SpringConfiguration {
         return  smartHomeReader().read();
     }
 
+    private Map<String, SensorEventFactory> eventFactories() {
+        Map<String, SensorEventFactory> eventFactories = new HashMap<>();
+        eventFactories.put("LightIsOn", new LightEventFactory(ON));
+        eventFactories.put("LightIsOff", new LightEventFactory(OFF));
+        eventFactories.put("DoorIsOpen", new DoorEventFactory(OPEN));
+        eventFactories.put("DoorIsClosed", new DoorEventFactory(CLOSE));
+        eventFactories.put("DoorIsLocked", new DoorEventFactory(CLOSE));
+        eventFactories.put("DoorIsUnlocked", new DoorEventFactory(OPEN));
+        return eventFactories;
+    }
+
     @Bean
     SensorEventsManager sensorEventsManager() {
         SensorEventsManager manager = new SensorEventsManager();
-        for (SensorEventHandler sensorEventHandler : eventHandlers()) {
-            manager.registerEventHandler(new SensorEventAdapter(sensorEventHandler));
+        for (SensorEventHandler sensorEventHandler : sensorEventHandlers()) {
+            manager.registerEventHandler(eventHandler(sensorEventHandler));
         }
         return manager;
+    }
+
+    EventHandler eventHandler(SensorEventHandler sensorEventHandler) {
+        return new SensorEventAdapter(sensorEventHandler, eventFactories());
     }
 
     @Bean
@@ -58,14 +76,13 @@ public class SpringConfiguration {
     }
 
     @Bean
-    List<SensorEventHandler> eventHandlers (){
-        List<SensorEventHandler> eventHandlers = new ArrayList<>();
-        Alarm alarm = smartHome().getAlarm();
-        eventHandlers.add(hallDoorHandler());
-        eventHandlers.add(lightHandler());
-        eventHandlers.add(doorHandler());
-        eventHandlers.add(AlarmHandler());
-        return eventHandlers;
+    List<SensorEventHandler> sensorEventHandlers(){
+        List<SensorEventHandler> sensorEventHandlers = new ArrayList<>();
+        sensorEventHandlers.add(hallDoorHandler());
+        sensorEventHandlers.add(lightHandler());
+        sensorEventHandlers.add(doorHandler());
+        sensorEventHandlers.add(alarmHandler());
+        return sensorEventHandlers;
     }
 
     @Bean
@@ -84,7 +101,7 @@ public class SpringConfiguration {
     }
 
     @Bean
-    SensorEventHandler AlarmHandler() {
+    SensorEventHandler alarmHandler() {
         return new AlarmHandler(smartHome());
     }
 
@@ -95,24 +112,10 @@ public class SpringConfiguration {
         return remoteControlRegistry;
     }
 
-    @Bean
-    private final HashMap<String, Button> buttons() {
-        final HashMap<String, Button> buttons = new HashMap<>();
-        buttons.put("A", new Button("A"));
-        buttons.put("B", new Button("B"));
-        buttons.put("C", new Button("C"));
-        buttons.put("D", new Button("D"));
-        buttons.put("1", new Button("1"));
-        buttons.put("2", new Button("2"));
-        buttons.put("3", new Button("3"));
-        buttons.put("4", new Button("4"));
-        return buttons;
-    }
-
 
     @Bean
     RemoteControlImpl remoteControl() {
-        RemoteControlImpl remoteControl = new RemoteControlImpl(buttons());
+        RemoteControlImpl remoteControl = new RemoteControlImpl();
         remoteControl.setCommand("A", activateAlarmCommand());
         remoteControl.setCommand("B", closeEntranceDoorCommand());
         remoteControl.setCommand("C", triggerAlertCommand());
