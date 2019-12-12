@@ -122,7 +122,7 @@ public class SpringConfiguration {
         remoteControl.setCommand("D", turnOffLightCommand());
         remoteControl.setCommand("1", turnOnHallLightCommand());
         remoteControl.setCommand("2", turnOnLightCommand());
-        return remoteControl();
+        return remoteControl;
     }
 
     @Bean

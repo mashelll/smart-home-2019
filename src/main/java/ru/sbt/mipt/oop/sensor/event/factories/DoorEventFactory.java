@@ -1,21 +1,21 @@
 package ru.sbt.mipt.oop.sensor.event.factories;
 
 import ru.sbt.mipt.oop.sensor.event.SensorEvent;
-import ru.sbt.mipt.oop.sensor.event.types.ActionType;
-import ru.sbt.mipt.oop.sensor.event.types.LightActionType;
+import ru.sbt.mipt.oop.sensor.event.types.DoorActionType;
 
-import static ru.sbt.mipt.oop.sensor.event.types.SensorEventType.LIGHT_EVENT;
+import static ru.sbt.mipt.oop.sensor.event.types.SensorEventType.DOOR_EVENT;
+
 
 public class DoorEventFactory implements SensorEventFactory {
-    ActionType actionType;
+    DoorActionType doorActionType;
 
-    public DoorEventFactory(ActionType actionType) {
-        this.actionType = actionType;
+    public DoorEventFactory(DoorActionType doorActionType) {
+        this.doorActionType = doorActionType;
     }
 
     @Override
     public SensorEvent generateSensorEvent(String objectId) {
-        return new SensorEvent(LIGHT_EVENT, (LightActionType) actionType, objectId);
+        return new SensorEvent(DOOR_EVENT, doorActionType, objectId);
     }
 }
 

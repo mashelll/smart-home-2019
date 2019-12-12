@@ -35,6 +35,7 @@ public class SensorEventAdapter implements EventHandler {
     }
 
     private SensorEvent adaptCCSensorEvent(CCSensorEvent event) {
+        if (!sensorEventFactories.containsKey(event.getEventType())) return null;
         return sensorEventFactories.get(event.getEventType()).generateSensorEvent(event.getObjectId());
     }
 }
